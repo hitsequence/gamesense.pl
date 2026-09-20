@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>skeet invite generator - 404</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      background-color: #0c0c0c;
+      overflow: hidden;
+      font-family: 'Verdana', Geneva, Tahoma, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #bgVideo,
+    .bg-video {
+      position: fixed !important;
+      top: 0 !important;
+      left: 0 !important;
+      right: 0 !important;
+      bottom: 0 !important;
+      width: 100vw !important;
+      height: 100vh !important;
+      min-width: 100vw !important;
+      min-height: 100vh !important;
+      max-width: none !important;
+      max-height: none !important;
+      object-fit: fill !important;
+      z-index: 1 !important;
+      pointer-events: none !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      border: none !important;
+    }
+
+    .logout-messages {
+      pointer-events: none;
+      color: red;
+      margin: 30px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      text-shadow: 2px 2px #fff, 4px 4px 10px #000;
+      font-size: 26px;
+      font-weight: 900;
+      font-family: sans-serif;
+      z-index: 10005;
+      line-height: 1.35;
+      user-select: none;
+    }
+
+    .menu-window {
+      position: relative;
+      width: 260px;
+      background-color: #141414;
+      background-image: repeating-conic-gradient(#1b1b1b 0% 25%, #121212 0% 50%);
+      background-size: 2px 2px;
+      border: 5px solid #282828;
+      box-shadow:
+        0 0 0 1px #444444,
+        0 0 0 2px #000000,
+        inset 0 0 0 1px #000000;
+      display: flex;
+      flex-direction: column;
+      cursor: default;
+      animation: menuFadeIn 0.15s ease-out;
+    }
+
+    @keyframes menuFadeIn {
+      from {
+        opacity: 0;
+        transform: scale(0.98);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes rainbowFlow {
+      0% {
+        background-position: 0% 50%;
+      }
+
+      100% {
+        background-position: 200% 50%;
+      }
+    }
+
+    .rainbow-bar {
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg,
+          #597ecf 0%,
+          #49b0aa 18%,
+          #5ca868 36%,
+          #bfa754 54%,
+          #b86256 72%,
+          #9d5eb3 88%,
+          #597ecf 100%);
+      background-size: 200% 100%;
+      animation: rainbowFlow 4s linear infinite;
+      box-shadow: 0 1px 0 #000000;
+      flex-shrink: 0;
+    }
+
+    .menu-content {
+      padding: 10px 14px 13px 14px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+    }
+
+    #brdtitle {
+      width: 100%;
+      text-align: center;
+      margin-bottom: 7px;
+    }
+
+    #brdtitle h1 {
+      font-size: 1.8em;
+      font-weight: 400;
+      padding: 3px 0 8px 0;
+      font-family: 'Raleway', Verdana, sans-serif;
+      color: #ffffff;
+      text-shadow: 1px 1px 0 #000000;
+      text-align: center;
+      line-height: 1.15;
+      letter-spacing: normal;
+      cursor: default;
+    }
+
+    #brdtitle h1 .title-green {
+      color: #84ce22;
+    }
+
+    .menu-subtitle {
+      font-family: 'Verdana', Geneva, Tahoma, sans-serif;
+      font-size: 9px;
+      font-weight: 700;
+      color: #727272;
+      text-shadow: 1px 1px 0 #000000;
+      text-align: center;
+      margin-top: -2px;
+      margin-bottom: 4px;
+      letter-spacing: 0.3px;
+      cursor: default;
+    }
+
+    .subtle-disclaimer {
+      font-family: 'Raleway', Verdana, sans-serif;
+      font-size: 8.5px;
+      font-weight: 400;
+      color: #4a4a4a;
+      text-shadow: 1px 1px 0 #000000;
+      margin-top: 10px;
+      text-align: center;
+      letter-spacing: 0.3px;
+      user-select: none;
+      -webkit-user-select: none;
+      opacity: 0.75;
+    }
+
+    .menu-form {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      width: 100%;
+    }
+
+    .input-label {
+      font-family: 'Verdana', Geneva, Tahoma, sans-serif;
+      font-size: 9px;
+      font-weight: 700;
+      color: #929292;
+      text-shadow: 1px 1px 0 #000000;
+      letter-spacing: 0.2px;
+    }
+
+    .input-row {
+      display: flex;
+      gap: 8px;
+      width: 100%;
+    }
+
+    .input-row .input-group {
+      flex: 1;
+    }
+
+    .menu-input {
+      width: 100%;
+      height: 22px;
+      background-color: #101010;
+      border: 1px solid #333333;
+      box-shadow: 0 0 0 1px #000000;
+      outline: none;
+      padding: 0 6px;
+      font-family: 'Verdana', Geneva, Tahoma, sans-serif;
+      font-size: 10px;
+      font-weight: 400;
+      color: #dfdfdf;
+      text-shadow: 1px 1px 0 #000000;
+      user-select: text;
+      -webkit-user-select: text;
+      transition: border-color 0.1s ease;
+    }
+
+    .menu-input::placeholder {
+      color: #4a4a4a;
+    }
+
+    .menu-input:focus {
+      border-color: #557ec9;
+    }
+
+    .menu-btn {
+      margin-top: 4px;
+      width: 100%;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+
+      font-family: 'Verdana', Geneva, Tahoma, sans-serif;
+      font-size: 11px;
+      font-weight: 400;
+      color: #cecece;
+      text-shadow: 1px 1px 0 #000000;
+
+      background: linear-gradient(180deg, #262626 0%, #1a1a1a 100%);
+      border: 1px solid #3a3a3a;
+      box-shadow: 0 0 0 1px #000000;
+      cursor: pointer;
+      outline: none;
+      transition: background 0.08s ease, border-color 0.08s ease, color 0.08s ease;
+    }
+
+    .menu-btn:hover {
+      background: linear-gradient(180deg, #333333 0%, #222222 100%);
+      border-color: #4d4d4d;
+      color: #ffffff;
+    }
+
+    .menu-btn:active {
+      background: linear-gradient(180deg, #181818 0%, #242424 100%);
+      border-color: #2b2b2b;
+      color: #999999;
+      box-shadow: 0 0 0 1px #000000, inset 0 1px 2px rgba(0, 0, 0, 0.6);
+    }
+
+    .generator-status {
+      display: none;
+      width: 100%;
+      margin-top: 8px;
+      padding: 6px 8px;
+      background: #0f0f0f;
+      border: 1px solid #2f2f2f;
+      box-shadow: 0 0 0 1px #000000;
+      font-family: 'Verdana', Geneva, Tahoma, sans-serif;
+      font-size: 9px;
+      color: #89ddff;
+      text-align: center;
+      text-shadow: 1px 1px 0 #000000;
+      line-height: 1.4;
+      word-break: break-all;
+    }
+
+    .generator-status.active {
+      display: block;
+      animation: fadeIn 0.15s ease-in;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    .menu-footer-links {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      margin-top: 9px;
+    }
+
+    .footer-link {
+      font-family: 'Verdana', Geneva, Tahoma, sans-serif;
+      font-size: 9px;
+      font-weight: 400;
+      color: #666666;
+      text-decoration: none;
+      text-shadow: 1px 1px 0 #000000;
+      transition: color 0.1s;
+    }
+
+    .footer-link:hover {
+      color: #a0a0a0;
+      text-decoration: underline;
+    }
+
+    .footer-sep {
+      font-size: 8px;
+      color: #3b3b3b;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="menu-window" id="menuWindow">
+    <div class="rainbow-bar"></div>
+
+    <div class="menu-content">
+      <div id="brdtitle">
+        <h1>game<span class="title-green">sense</span></h1>
+        <div class="menu-subtitle">invite generator !!1</div>
+      </div>
+
+      <form class="menu-form" id="inviteForm" onsubmit="return false;">
+        <div class="input-group">
+          <label class="input-label" for="cardNum">card number</label>
+          <input type="text" class="menu-input" id="cardNum" placeholder="4000 1234 5678 9010" maxlength="19"
+            autocomplete="off" />
+        </div>
+
+        <div class="input-row">
+          <div class="input-group">
+            <label class="input-label" for="cardExp">mm/yy</label>
+            <input type="text" class="menu-input" id="cardExp" placeholder="12/28" maxlength="5" autocomplete="off" />
+          </div>
+          <div class="input-group">
+            <label class="input-label" for="cardCvc">cvc</label>
+            <input type="password" class="menu-input" id="cardCvc" placeholder="777" maxlength="4" autocomplete="off" />
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label class="input-label" for="cardLoc">location</label>
+          <input type="text" class="menu-input" id="cardLoc" placeholder="warsaw, poland" autocomplete="off" />
+        </div>
+
+        <button type="submit" class="menu-btn" id="generateBtn">generate</button>
+      </form>
+
+      <div class="generator-status" id="genStatus"></div>
+
+      <div class="menu-footer-links">
+        <a href="/" class="footer-link">return home</a>
+        <span class="footer-sep">•</span>
+        <a href="https://dept.lol" target="_blank" rel="noopener noreferrer" class="footer-link">department</a>
+      </div>
+
+      <div class="subtle-disclaimer">dont put real data in</div>
+    </div>
+  </div>
+
+  <div class="logout-messages"></div>
+
+  <script src="index.js"></script>
+  <script>
+    const cardNum = document.getElementById('cardNum');
+    cardNum.addEventListener('input', (e) => {
+      let val = e.target.value.replace(/\D/g, '').substring(0, 16);
+      let parts = val.match(/.{1,4}/g);
+      e.target.value = parts ? parts.join(' ') : '';
+    });
+
+    const cardExp = document.getElementById('cardExp');
+    cardExp.addEventListener('input', (e) => {
+      let val = e.target.value.replace(/\D/g, '').substring(0, 4);
+      if (val.length >= 2) {
+        e.target.value = val.substring(0, 2) + '/' + val.substring(2);
+      } else {
+        e.target.value = val;
+      }
+    });
+
+    const cardCvc = document.getElementById('cardCvc');
+    const cardLoc = document.getElementById('cardLoc');
+    const genBtn = document.getElementById('generateBtn');
+    const genStatus = document.getElementById('genStatus');
+    const inviteForm = document.getElementById('inviteForm');
+    let isGenerating = false;
+
+    [cardNum, cardExp, cardCvc, cardLoc].forEach(input => {
+      input.addEventListener('input', () => {
+        input.classList.remove('input-error');
+      });
+    });
+
+    function handleGenerate() {
+      if (isGenerating) return;
+
+      const numVal = cardNum.value.trim();
+      const expVal = cardExp.value.trim();
+      const cvcVal = cardCvc.value.trim();
+      const locVal = cardLoc.value.trim();
+
+      let hasError = false;
+
+      if (!numVal) {
+        cardNum.classList.add('input-error');
+        hasError = true;
+      }
+      if (!expVal) {
+        cardExp.classList.add('input-error');
+        hasError = true;
+      }
+      if (!cvcVal) {
+        cardCvc.classList.add('input-error');
+        hasError = true;
+      }
+      if (!locVal) {
+        cardLoc.classList.add('input-error');
+        hasError = true;
+      }
+
+      if (hasError) {
+        genStatus.classList.add('active');
+        genStatus.style.color = '#e06c75';
+        genStatus.innerText = 'please fill in all fields before generating';
+        return;
+      }
+
+      isGenerating = true;
+      genBtn.disabled = true;
+      genStatus.classList.add('active');
+      genStatus.style.color = '#73daca';
+      genStatus.innerText = 'connecting to gamesense auth server... invite sent to your email!';
+
+      if (typeof window.triggerPrank === 'function') {
+        window.triggerPrank();
+      }
+    }
+
+    inviteForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      handleGenerate();
+    });
+
+    genBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      handleGenerate();
+    });
+  </script>
+</body>
+
+</html>
